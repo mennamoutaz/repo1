@@ -1,5 +1,5 @@
 #include "aiplayer.h"
-#include "gameBoard.h"
+#include "gameboard.h"
 #include <limits>
 #include <iostream>
 
