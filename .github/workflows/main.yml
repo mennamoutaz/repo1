@@ -10,7 +10,7 @@ on:
 
 jobs:
   test-runner:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -18,14 +18,13 @@ jobs:
 
       - name: Install Qt
         run: |
-          sudo apt-get update
-          sudo apt-get install -y qtbase5-dev qt5-qmake
+          choco install qt --version=5.15.2
           
       - name: Verify directory structure 
-        run: ls -R tictactoegui
+        run: dir /s /b tictactoegui
 
       - name: Build project
         run: |
           cd tictactoegui
           qmake ttt.pro
-          make
+          nmake
