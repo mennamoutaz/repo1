@@ -1,7 +1,7 @@
 #ifndef AIPLAYER_H
 #define AIPLAYER_H
 
-#include "GameBoard.h"
+#include "gameboard.h"
 #include <vector>
 
 struct TreeNode {
