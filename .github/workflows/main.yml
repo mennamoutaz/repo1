@@ -22,10 +22,10 @@ jobs:
           sudo apt-get install -y qtbase5-dev qt5-qmake
           
       - name: Verify directory structure 
-        run: ls -R repo1/tictactoegui
+        run: ls -R tictactoegui
 
       - name: Build project
         run: |
-          cd repo1/tictactoegui
+          cd tictactoegui
           qmake ttt.pro
           make
