@@ -16,29 +16,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Qt using Chocolatey
-        run: |
-          choco install qt5-default --confirm
+      - name: (2) Install Qt
+        uses: jurplel/install-qt-action@v3
 
-      - name: Display Qt Installation Directory
-        shell: powershell
-        run: |
-          $qtPath = (Get-ChildItem -Directory "C:\Program Files\Qt\*\" | Sort-Object Name -Descending | Select-Object -First 1).FullName
-          Write-Host "Qt installation directory: $qtPath"
+
+      # - name: Display Qt Installation Directory
+      #   shell: powershell
+      #   run: |
+      #     $qtPath = (Get-ChildItem -Directory "C:\Program Files\Qt\*\" | Sort-Object Name -Descending | Select-Object -First 1).FullName
+      #     Write-Host "Qt installation directory: $qtPath"
         
-      - name: Add Qt to PATH
-        shell: powershell
-        run: |
-          $binPath = Join-Path -Path $qtPath -ChildPath "msvc2019_64\bin"
-          [System.Environment]::SetEnvironmentVariable('Path', "$binPath;$env:Path", [System.EnvironmentVariableTarget]::Process)
-          Write-Host "Qt path added to PATH: $binPath"
+      # - name: Add Qt to PATH
+      #   shell: powershell
+      #   run: |
+      #     $binPath = Join-Path -Path $qtPath -ChildPath "msvc2019_64\bin"
+      #     [System.Environment]::SetEnvironmentVariable('Path', "$binPath;$env:Path", [System.EnvironmentVariableTarget]::Process)
+      #     Write-Host "Qt path added to PATH: $binPath"
           
-      - name: Verify Qt installation
-        shell: powershell
-        run: |
-          if (-Not (Get-Command qmake -ErrorAction SilentlyContinue)) {
-            throw "qmake not found in PATH"
-          }
+      # - name: Verify Qt installation
+      #   shell: powershell
+      #   run: |
+      #     if (-Not (Get-Command qmake -ErrorAction SilentlyContinue)) {
+      #       throw "qmake not found in PATH"
+      #     }
 
       - name: Verify directory structure 
         shell: powershell
