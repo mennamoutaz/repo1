@@ -24,18 +24,28 @@ jobs:
 
       - name: Install Qt using Chocolatey
         run: |
-         choco install qt5-default -y
+          choco install qt5-default --confirm
 
       - name: Add Qt to PATH
+        shell: powershell
         run: |
           $qtPath = 'C:\Qt\5.15.2\msvc2019_64\bin'
-          [System.Environment]::SetEnvironmentVariable('PATH', "$qtPath;$env:PATH", [System.EnvironmentVariableTarget]::Process)
+          $env:Path += ";$qtPath"
           Write-Host "Qt path added to PATH: $qtPath"
 
+      - name: Verify Qt installation
+        shell: powershell
+        run: |
+          if (-Not (Get-Command qmake -ErrorAction SilentlyContinue)) {
+            throw "qmake not found in PATH"
+          }
+
       - name: Verify directory structure 
+        shell: powershell
         run: Get-ChildItem -Recurse tictactoegui
 
       - name: Build project
+        shell: powershell
         run: |
           cd tictactoegui
           qmake ttt.pro
