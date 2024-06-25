@@ -24,8 +24,7 @@ jobs:
 
       - name: Install Qt using Chocolatey
         run: |
-          choco install qt5-sdk --confirm
-          RefreshEnv
+         choco install qt5-default -y
 
       - name: Add Qt to PATH
         run: |
