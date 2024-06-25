@@ -29,7 +29,7 @@ jobs:
       - name: Add Qt to PATH
         shell: powershell
         run: |
-          $qtPath = 'C:\Qt\5.15.2\msvc2019_64\bin'
+          $qtPath = 'C:\Qt\5.15.2\mingw_64\bin'
           $env:Path += ";$qtPath"
           Write-Host "Qt path added to PATH: $qtPath"
 
