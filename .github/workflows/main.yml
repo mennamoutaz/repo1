@@ -18,11 +18,33 @@ jobs:
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
+        with:
+          version: '5.15.2'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_mingw'
+          modules: 'qtbase'
 
-      - name: Setup MSVC environment
-        shell: cmd
+      - name: Install MinGW
+        run: choco install mingw -y
+
+      - name: Add Qt and MinGW to PATH
+        shell: powershell
         run: |
-          "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+          $qtPath = 'C:\Qt\5.15.2\mingw81_64\bin'
+          $mingwPath = 'C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin'
+          [System.Environment]::SetEnvironmentVariable('PATH', "$qtPath;$mingwPath;$env:PATH", [System.EnvironmentVariableTarget]::Process)
+          Write-Host "Qt and MinGW paths added to PATH: $qtPath, $mingwPath"
+          
+      - name: Verify Qt and MinGW installation
+        shell: powershell
+        run: |
+          if (-Not (Get-Command qmake -ErrorAction SilentlyContinue)) {
+            throw "qmake not found in PATH"
+          }
+          if (-Not (Get-Command mingw32-make -ErrorAction SilentlyContinue)) {
+            throw "mingw32-make not found in PATH"
+          }
 
       - name: Verify directory structure 
         shell: powershell
@@ -33,4 +55,4 @@ jobs:
         run: |
           cd tictactoegui
           qmake ttt.pro
-          nmake
+          mingw32-make
