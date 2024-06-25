@@ -16,23 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Download Qt Installer
-        run: |
-          curl -Lo qt-installer.exe https://download.qt.io/official_releases/qt/5.15/5.15.2/qt-opensource-windows-x86-5.15.2.exe
-          if (!(Test-Path -Path "qt-installer.exe")) {
-            Write-Error "Qt installer download failed."
-            exit 1
-          }
-
-      - name: Verify Download
-        run: |
-          Get-FileHash qt-installer.exe
-
       - name: Install Qt
         run: |
-          .\qt-installer.exe --script qt-installer-noninteractive.qs
-
-      - name: Verify directory structure
+          choco install qt 
+          
+      - name: Verify directory structure 
         run: dir /s /b tictactoegui
 
       - name: Build project
