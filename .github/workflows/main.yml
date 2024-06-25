@@ -21,7 +21,7 @@ jobs:
           choco install qt5-default -y
           
       - name: Verify directory structure 
-        run: dir /s /b tictactoegui
+        run: Get-ChildItem -Recurse tictactoegui
 
       - name: Build project
         run: |
