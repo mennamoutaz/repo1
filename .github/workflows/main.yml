@@ -16,17 +16,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Qt
+      - name: Install Chocolatey
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+          iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+      - name: Install Qt using Chocolatey
         run: |
           choco install qt5-sdk --confirm
           RefreshEnv
-      
+
       - name: Add Qt to PATH
         run: |
           $qtPath = 'C:\Qt\5.15.2\msvc2019_64\bin'
           [System.Environment]::SetEnvironmentVariable('PATH', "$qtPath;$env:PATH", [System.EnvironmentVariableTarget]::Process)
           Write-Host "Qt path added to PATH: $qtPath"
-          
+
       - name: Verify directory structure 
         run: Get-ChildItem -Recurse tictactoegui
 
