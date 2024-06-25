@@ -26,22 +26,19 @@ jobs:
         run: |
           choco install qt5-default --confirm
 
-      - name: Find Qt installation path
-        id: find-qt-path
+      - name: Display Qt Installation Directory
         shell: powershell
         run: |
-         $qtPath = Get-ChildItem -Path "C:\Program Files" -Filter "qmake.exe" -Recurse -File | Select-Object -First 1 -ExpandProperty FullName
-         if ($qtPath -eq $null) {
-         $qtPath = Get-ChildItem -Path "C:\Program Files (x86)" -Filter "qmake.exe" -Recurse -File | Select-Object -First 1 -ExpandProperty FullName
-         }
-         echo "##[set-output name=qt-path;]$qtPath"
-
+          $qtPath = (Get-ChildItem -Directory "C:\Program Files (x86)\Qt\*\" | Sort-Object Name -Descending | Select-Object -First 1).FullName
+          Write-Host "Qt installation directory: $qtPath"
+        
       - name: Add Qt to PATH
         shell: powershell
         run: |
-          $env:Path += ";$qtPath"
-          Write-Host "Qt path added to PATH: $qtPath"
-
+          $binPath = Join-Path -Path $qtPath -ChildPath "msvc2019_64\bin"
+          [System.Environment]::SetEnvironmentVariable('Path', "$binPath;$env:Path", [System.EnvironmentVariableTarget]::Process)
+          Write-Host "Qt path added to PATH: $binPath"
+          
       - name: Verify Qt installation
         shell: powershell
         run: |
