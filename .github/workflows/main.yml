@@ -19,6 +19,12 @@ jobs:
       - name: Install Qt
         run: |
           choco install qt5-default -y
+      
+      - name: Add Qt to PATH
+        run: |
+          $qtPath = 'C:\Qt\5.15.2\msvc2019_64\bin'
+          [System.Environment]::SetEnvironmentVariable('PATH', "$qtPath;$env:PATH", [System.EnvironmentVariableTarget]::Process)
+          Write-Host "Qt path added to PATH: $qtPath"
           
       - name: Verify directory structure 
         run: Get-ChildItem -Recurse tictactoegui
