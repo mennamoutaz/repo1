@@ -18,7 +18,7 @@ jobs:
 
       - name: Install Qt
         run: |
-          choco install qt 
+          choco install qt5-default -y
           
       - name: Verify directory structure 
         run: dir /s /b tictactoegui
