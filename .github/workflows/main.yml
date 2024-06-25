@@ -49,4 +49,4 @@ jobs:
         run: |
           cd tictactoegui
           qmake ttt.pro
-          make
+          nmake
