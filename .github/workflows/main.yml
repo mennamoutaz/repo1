@@ -59,7 +59,7 @@ jobs:
       - name: Run unit tests
         shell: powershell
         run: |
-          cd tictactoegui  # Adjust if your tests are in a different directory
+          cd UNITTESTZZZZ  # Adjust if your tests are in a different directory
           mingw32-make check  # Run QTest-based tests
 
       - name: Run executable
