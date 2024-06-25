@@ -30,7 +30,11 @@ jobs:
         id: find-qt-path
         shell: powershell
         run: |
-          $qtPath = Get-ChildItem -Path "C:\" -Filter "qmake.exe" -Recurse -File | Select-Object -First 1 -ExpandProperty FullName
+         $qtPath = Get-ChildItem -Path "C:\Program Files" -Filter "qmake.exe" -Recurse -File | Select-Object -First 1 -ExpandProperty FullName
+         if ($qtPath -eq $null) {
+         $qtPath = Get-ChildItem -Path "C:\Program Files (x86)" -Filter "qmake.exe" -Recurse -File | Select-Object -First 1 -ExpandProperty FullName
+         }
+         echo "##[set-output name=qt-path;]$qtPath"
 
       - name: Add Qt to PATH
         shell: powershell
