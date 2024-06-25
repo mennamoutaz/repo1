@@ -18,61 +18,18 @@ jobs:
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
-        with:
-          version: '5.15.2'
-          host: 'windows'
-          target: 'desktop'
-          arch: 'win64_mingw'
-          modules: 'qtbase'
 
-      - name: Install MinGW
-        run: choco install mingw -y
-
-      - name: Add Qt and MinGW to PATH
-        shell: powershell
+      - name: Setup MSVC environment
+        shell: cmd
         run: |
-          $qtPath = 'C:\Qt\5.15.2\mingw81_64\bin'
-          $mingwPath = 'C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin'
-          [System.Environment]::SetEnvironmentVariable('PATH', "$qtPath;$mingwPath;$env:PATH", [System.EnvironmentVariableTarget]::Process)
-          Write-Host "Qt and MinGW paths added to PATH: $qtPath, $mingwPath"
-          
-      - name: Verify Qt and MinGW installation
-        shell: powershell
-        run: |
-          if (-Not (Get-Command qmake -ErrorAction SilentlyContinue)) {
-            throw "qmake not found in PATH"
-          }
-          if (-Not (Get-Command mingw32-make -ErrorAction SilentlyContinue)) {
-            throw "mingw32-make not found in PATH"
-          }
-
-
-      # - name: Display Qt Installation Directory
-      #   shell: powershell
-      #   run: |
-      #     $qtPath = (Get-ChildItem -Directory "C:\Program Files\Qt\*\" | Sort-Object Name -Descending | Select-Object -First 1).FullName
-      #     Write-Host "Qt installation directory: $qtPath"
-        
-      # - name: Add Qt to PATH
-      #   shell: powershell
-      #   run: |
-      #     $binPath = Join-Path -Path $qtPath -ChildPath "msvc2019_64\bin"
-      #     [System.Environment]::SetEnvironmentVariable('Path', "$binPath;$env:Path", [System.EnvironmentVariableTarget]::Process)
-      #     Write-Host "Qt path added to PATH: $binPath"
-          
-      # - name: Verify Qt installation
-      #   shell: powershell
-      #   run: |
-      #     if (-Not (Get-Command qmake -ErrorAction SilentlyContinue)) {
-      #       throw "qmake not found in PATH"
-      #     }
+          "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
 
       - name: Verify directory structure 
         shell: powershell
         run: Get-ChildItem -Recurse tictactoegui
 
       - name: Build project
-        shell: powershell
+        shell: cmd
         run: |
           cd tictactoegui
           qmake ttt.pro
