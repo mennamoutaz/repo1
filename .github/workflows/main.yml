@@ -18,7 +18,8 @@ jobs:
 
       - name: Install Qt
         run: |
-          choco install qt5-default -y
+          choco install qt5-sdk --confirm
+          RefreshEnv
       
       - name: Add Qt to PATH
         run: |
