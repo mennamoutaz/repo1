@@ -26,10 +26,17 @@ jobs:
         run: |
           choco install qt5-default --confirm
 
+      - name: Find package path
+        id: find-path
+        shell: powershell
+        run: |
+          $path = Get-ChildItem -Path $env:USERPROFILE\AppData\Roaming\npm\node_modules\your-package -Recurse | Select-Object -First 1 -ExpandProperty FullName
+          echo "##[set-output name=path;]$path"
+
       - name: Add Qt to PATH
         shell: powershell
         run: |
-          $qtPath = 'C:\Qt\5.15.2\mingw_64\bin'
+          $qtPath = ${{ steps.find-path.outputs.path }}
           $env:Path += ";$qtPath"
           Write-Host "Qt path added to PATH: $qtPath"
 
