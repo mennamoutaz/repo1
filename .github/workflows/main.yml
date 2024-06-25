@@ -26,12 +26,13 @@ jobs:
         run: |
           choco install qt5-default --confirm
 
-      - name: Find package path
-        id: find-path
+      - name: Find Qt installation path
+        id: find-qt-path
         shell: powershell
         run: |
-          $path = Get-ChildItem -Path $env:USERPROFILE\AppData\Roaming\npm\node_modules\your-package -Recurse | Select-Object -First 1 -ExpandProperty FullName
-          echo "##[set-output name=path;]$path"
+          $qtPath = Get-Command -ErrorAction SilentlyContinue -Name qmake | Select-Object -ExpandProperty Source
+          $qtFolder = Split-Path -Path $qtPath -Parent
+          echo "##[set-output name=qt-path;]$qtFolder"
 
       - name: Add Qt to PATH
         shell: powershell
