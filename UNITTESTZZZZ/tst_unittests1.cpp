@@ -363,4 +363,4 @@ void Tests::testOutOfBoundsAccess() {
 // Include the QTEST_MAIN macro to compile the unit tests
 QTEST_MAIN(Tests)
 
-#include "tst_unittests.moc" // Include the moc file for Qt Test
+#include "tst_unittests1.moc" // Include the moc file for Qt Test
