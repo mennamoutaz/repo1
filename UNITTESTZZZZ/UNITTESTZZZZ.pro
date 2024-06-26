@@ -7,10 +7,10 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES +=  \
-    ../../Desktop/elhamdullahfinal/elhamdullah3/aiplayer.cpp \
-    ../../Desktop/elhamdullahfinal/elhamdullah3/gameboard.cpp \
+    tictactoegui/aiplayer.cpp \
+    tictactoegui/gameboard.cpp \
     tst_unittests1.cpp
 
 HEADERS += \
-    ../../Desktop/elhamdullahfinal/elhamdullah3/aiplayer.h \
-    ../../Desktop/elhamdullahfinal/elhamdullah3/gameboard.h
+    tictactoegui/aiplayer.h \
+    tictactoegui/gameboard.h
