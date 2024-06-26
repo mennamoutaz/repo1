@@ -12,5 +12,5 @@ SOURCES += \
        tst_unittests1.cpp
 
 HEADERS += \
-    ../repo1/tictactoegui/aiplayer.h \
-    ../repo1/tictactoegui/gameboard.h
+    ../tictactoegui/aiplayer.h \
+    ../tictactoegui/gameboard.h \
