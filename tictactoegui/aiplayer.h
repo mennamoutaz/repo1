@@ -22,6 +22,7 @@ private:
     void build_tree(TreeNode* node, int player) const;
     int minimax(TreeNode* node, int alpha, int beta, bool is_max, int depth) const;
     int evaluate(const GameBoard& board) const;
+    friend class Tests;
 };
 
 #endif // AIPLAYER_H
