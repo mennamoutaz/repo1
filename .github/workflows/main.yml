@@ -68,6 +68,12 @@ jobs:
           qmake ttt.pro
           mingw32-make
 
+      - name: List build directory contents
+        shell: powershell
+        run: |
+          cd tictactoegui/build/Desktop_Qt_5_15_2_MinGW_64_bit-Debug/debug
+          Get-ChildItem -Recurse
+
       - name: Upload Test Executable
         uses: actions/upload-artifact@v2
         with:
