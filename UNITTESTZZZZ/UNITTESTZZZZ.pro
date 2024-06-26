@@ -8,7 +8,7 @@ TEMPLATE = app
 
 SOURCES += ../tictactoegui/aiplayer.cpp \
            ../tictactoegui/gameboard.cpp \
-               UNITTESTZZZZ.cpp
+               tst_unittests1.cpp
 
 HEADERS += ../tictactoegui/aiplayer.h \
            ../tictactoegui/gameboard.h
