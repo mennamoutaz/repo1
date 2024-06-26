@@ -55,9 +55,15 @@ jobs:
           cd tictactoegui
           qmake ttt.pro
           mingw32-make
-    
-      - name: Generate moc file
-        run: qmake - стороная_b moc UNITTESTZZZZ.pro
+      - name: Verify moc.exe in PATH
+        shell: cmd
+        run: |
+          moc -v
+
+      - name: Clean build directory
+        run: |
+          cd UNITTESTZZZZ
+          del /S /Q debug  
 
       - name: Build unit tests
         shell: powershell
