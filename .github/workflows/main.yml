@@ -68,21 +68,21 @@ jobs:
          moc tst_unittests1.cpp -o tst_unittests1.moc
 
 
-      - name: Build unit tests
+      - name: Build project
         shell: powershell
         run: |
-          cd UNITTESTZZZZ
-          qmake UNITTESTZZZZ.pro
+          cd tictactoegui
+          qmake ttt.pro
           mingw32-make
 
-      - name: Run unit tests
-        shell: cmd
-        run: |
-          cd UNITTESTZZZZ\build\Desktop_Qt_5_15_2_MinGW_64_bit-Debug\debug
-          UNITTESTZZZZ.exe
-          
-      - name: Run executable
+      - name: Upload Test Executable
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-executable
+          path: tictactoegui/build/Desktop_Qt_5_15_2_MinGW_64_bit-Debug/debug/ttt.exe
+
+      - name: Run Tests
         shell: powershell
         run: |
-          cd tictactoegui/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/debug
+          cd tictactoegui/build/Desktop_Qt_5_15_2_MinGW_64_bit-Debug/debug
           ./ttt.exe
