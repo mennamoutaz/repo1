@@ -55,7 +55,32 @@ jobs:
           cd tictactoegui
           qmake ttt.pro
           mingw32-make
+      - name: Verify moc.exe in PATH
+        shell: cmd
+        run: |
+          moc -v
 
+      - name: Generate MOC files
+        shell: cmd
+        run: |
+         cd UNITTESTZZZZ
+         moc ../tictactoegui/aiplayer.h -o moc_aiplayer.cpp
+         moc tst_unittests1.cpp -o tst_unittests1.moc
+
+
+      - name: Build unit tests
+        shell: powershell
+        run: |
+          cd UNITTESTZZZZ
+          qmake UNITTESTZZZZ.pro
+          mingw32-make
+
+      - name: Run unit tests
+        shell: cmd
+        run: |
+          cd UNITTESTZZZZ\build\Desktop_Qt_5_15_2_MinGW_64_bit-Debug\debug
+          UNITTESTZZZZ.exe
+          
       - name: Run executable
         shell: powershell
         run: |
