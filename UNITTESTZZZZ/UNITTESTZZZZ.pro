@@ -14,3 +14,5 @@ SOURCES += \
 HEADERS += \
     ../tictactoegui/aiplayer.h \
     ../tictactoegui/gameboard.h \
+
+SOURCES += tst_unittests.moc
