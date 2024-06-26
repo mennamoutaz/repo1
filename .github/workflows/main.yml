@@ -60,14 +60,14 @@ jobs:
         shell: powershell
         run: |
           cd UNITTESTZZZZ
-          qmake UNITTESTZZZZ.pro
+          qmake tests.pro
           mingw32-make
 
       - name: Run unit tests
-        shell: powershell
+        shell: cmd
         run: |
-         cd  UNITTESTZZZZ/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/debug
-         ./UNITTESTZZZZ.exe
+          cd UNITTESTZZZZ\build\Desktop_Qt_5_15_2_MinGW_64_bit-Debug\debug
+          UNITTESTZZZZ.exe
           
       - name: Run executable
         shell: powershell
