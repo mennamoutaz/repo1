@@ -15,7 +15,7 @@ HEADERS += \
     ../tictactoegui/aiplayer.h \
     ../tictactoegui/gameboard.h \
 
-SOURCES += tst_unittests.moc
+SOURCES += tst_unittests1.moc
 
 # Include path to Qt headers
 INCLUDEPATH += $$PWD/../../Qt/5.15.2/mingw81_64/include
