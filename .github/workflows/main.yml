@@ -60,7 +60,7 @@ jobs:
         shell: powershell
         run: |
           cd UNITTESTZZZZ
-          qmake tests.pro
+          qmake UNITTESTZZZZ.pro
           mingw32-make
 
       - name: Run unit tests
