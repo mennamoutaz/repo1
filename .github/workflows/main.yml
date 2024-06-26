@@ -60,6 +60,8 @@ jobs:
          cd UNITTESTZZZZ
          mingw32-make clean
 
+      - name: Generate moc file
+        run: qmake - стороная_b moc UNITTESTZZZZ.pro
 
       - name: Build unit tests
         shell: powershell
