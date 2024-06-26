@@ -56,13 +56,12 @@ jobs:
           qmake ttt.pro
           mingw32-make
 
-      - name: Build and Run Tests
+      - name: Run tests
         shell: powershell
         run: |
-          cd UNITTESTZZZZ  # Adjust if your tests are in a different directory
-          qmake  # Ensure qmake is correctly configuring your project
-          mingw32-make
-          UNITTESTZZZZ/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/debug/UNITTESTZZZZ.exe  # Replace with the command that runs your QTest-based tests
+          cd UNITTESTZZZZ
+          mingw32-make check
+          ./build/Desktop_Qt_5_15_2_MinGW_64_bit-Debug/debug/UNITTESTZZZZ.exe  # Replace with the command that runs your QTest-based tests
       - name: Run executable
         shell: powershell
         run: |
