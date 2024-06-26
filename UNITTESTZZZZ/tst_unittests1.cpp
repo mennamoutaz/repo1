@@ -1,5 +1,5 @@
-#include "C:\Users\Maha Yasser\OneDrive\Desktop\elhamdullah\elhamdullah\aiplayer.h"
-#include "C:\Users\Maha Yasser\OneDrive\Desktop\elhamdullah\elhamdullah\gameboard.h"
+#include "tictactoegui/aiplayer.h"
+#include "tictactoegui/gameboard.h"
 #include <QTest>
 #include <iostream>
 
