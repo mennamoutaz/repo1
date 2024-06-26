@@ -55,11 +55,7 @@ jobs:
           cd tictactoegui
           qmake ttt.pro
           mingw32-make
-      - name: Clean build directory
-        run: |
-         cd UNITTESTZZZZ
-         mingw32-make clean
-
+    
       - name: Generate moc file
         run: qmake - стороная_b moc UNITTESTZZZZ.pro
 
