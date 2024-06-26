@@ -60,7 +60,7 @@ jobs:
         shell: powershell
         run: |
           cd UNITTESTZZZZ
-          mingw32-make check
+          mingw32-make
           ./build/Desktop_Qt_5_15_2_MinGW_64_bit-Debug/debug/UNITTESTZZZZ.exe  # Replace with the command that runs your QTest-based tests
       - name: Run executable
         shell: powershell
