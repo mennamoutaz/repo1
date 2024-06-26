@@ -1,5 +1,5 @@
-#include "../repo1/tictactoegui/aiplayer.h"
-#include "../repo1/tictactoegui/gameboard.h"
+#include "../tictactoegui/aiplayer.h"
+#include "../tictactoegui/gameboard.h"
 #include <QTest>
 #include <iostream>
 
