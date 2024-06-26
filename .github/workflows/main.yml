@@ -75,6 +75,14 @@ jobs:
           qmake UNITTESTZZZZ.pro
           mingw32-make
 
+
+      - name: List build directory contents
+        shell: powershell
+        run: |
+          cd UNITTESTZZZZ
+          Get-ChildItem -Recurse
+
+
       - name: Run unit tests
         shell: cmd
         run: |
