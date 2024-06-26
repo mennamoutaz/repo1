@@ -16,3 +16,15 @@ HEADERS += \
     ../tictactoegui/gameboard.h \
 
 SOURCES += tst_unittests.moc
+
+# Include path to Qt headers
+INCLUDEPATH += $$PWD/../../Qt/5.15.2/mingw81_64/include
+
+# Ensure linking with necessary Qt libraries
+LIBS += -L$$PWD/../../Qt/5.15.2/mingw81_64/lib \
+    -lQt5Test
+
+QMAKE_CXXFLAGS += $$QMAKE_CXXFLAGS_WARN_ON
+
+# Define the target name
+TARGET = tst_unittests
