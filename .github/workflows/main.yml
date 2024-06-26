@@ -55,6 +55,11 @@ jobs:
           cd tictactoegui
           qmake ttt.pro
           mingw32-make
+      - name: Clean build directory
+        run: |
+         cd UNITTESTZZZZ
+         mingw32-make clean
+
 
       - name: Build unit tests
         shell: powershell
