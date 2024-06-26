@@ -83,11 +83,11 @@ jobs:
           Get-ChildItem -Recurse
 
 
-      - name: Run unit tests
-        shell: cmd
+      - name: Run Tests
+        shell: powershell
         run: |
-          cd UNITTESTZZZZ\build\Desktop_Qt_5_15_2_MinGW_64_bit-Debug\debug
-          UNITTESTZZZZ.exe
+          cd UNITTESTZZZZ/release
+          ./UNITTESTZZZZ.exe
           
       - name: Run executable
         shell: powershell
