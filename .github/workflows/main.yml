@@ -63,9 +63,10 @@ jobs:
       - name: Generate MOC files
         shell: cmd
         run: |
-          cd UNITTESTZZZZ
-          moc ../tictactoegui/aiplayer.h -o moc_aiplayer.cpp
-          moc tst_unittests1.h -o tst_unittests1.moc
+         cd UNITTESTZZZZ
+         moc ../tictactoegui/aiplayer.h -o moc_aiplayer.cpp
+         moc tst_unittests1.cpp -o tst_unittests1.moc
+
 
       - name: Build unit tests
         shell: powershell
