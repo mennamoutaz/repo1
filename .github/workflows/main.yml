@@ -61,9 +61,10 @@ jobs:
           moc -v
 
       - name: Clean build directory
+        shell: powershell
         run: |
           cd UNITTESTZZZZ
-          del /S /Q debug  
+          Remove-Item -Recurse -Force debug  
 
       - name: Build unit tests
         shell: powershell
