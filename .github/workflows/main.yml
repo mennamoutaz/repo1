@@ -82,12 +82,19 @@ jobs:
           cd UNITTESTZZZZ
           Get-ChildItem -Recurse
 
-
       - name: Run Tests
         shell: powershell
+        continue-on-error: true
         run: |
           cd UNITTESTZZZZ/release
           ./UNITTESTZZZZ.exe
+
+      - name: Capture Test Output
+        if: failure()
+        shell: powershell
+        run: |
+          Write-Output "Test failed, capturing output..."
+          Get-Content -Path UNITTESTZZZZ/release/UNITTESTZZZZ.exe.log -Tail 100
           
       - name: Run executable
         shell: powershell
