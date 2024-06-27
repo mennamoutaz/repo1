@@ -82,20 +82,25 @@ jobs:
           cd UNITTESTZZZZ
           Get-ChildItem -Recurse
 
+      - name: Upload Test Executable
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-executable
+          path: UNITTESTZZZZ/release/UNITTESTZZZZ.exe
+
       - name: Run Tests
         shell: powershell
         continue-on-error: true
         run: |
-         cd UNITTESTZZZZ/release
-         ./UNITTESTZZZZ.exe > test_output.log 2>&1
-
+          cd UNITTESTZZZZ/release
+          ./UNITTESTZZZZ.exe > test_output.log 2>&1
 
       - name: Capture Test Output
         if: failure()
         shell: powershell
         run: |
           Write-Output "Test failed, capturing output..."
-          Get-Content -Path UNITTESTZZZZ/release/UNITTESTZZZZ.exe.log -Tail 100
+          Get-Content -Path UNITTESTZZZZ/release/test_output.log -Tail 100
           
       - name: Run executable
         shell: powershell
