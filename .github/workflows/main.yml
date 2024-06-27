@@ -75,18 +75,21 @@ jobs:
           qmake UNITTESTZZZZ.pro
           mingw32-make
 
-
       - name: List build directory contents
         shell: powershell
         run: |
           cd UNITTESTZZZZ
           Get-ChildItem -Recurse
 
-      - name: Upload Test Executable
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-executable
-          path: UNITTESTZZZZ/release/UNITTESTZZZZ.exe
+      - name: Verify and log directory structure
+        shell: powershell
+        run: |
+          cd UNITTESTZZZZ
+          Get-ChildItem -Recurse
+          if (-Not (Test-Path -Path "release")) {
+            throw "Release directory does not exist"
+          }
+          Get-ChildItem -Path "release"
 
       - name: Run Tests
         shell: powershell
