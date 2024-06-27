@@ -86,8 +86,9 @@ jobs:
         shell: powershell
         continue-on-error: true
         run: |
-          cd UNITTESTZZZZ/release
-          ./UNITTESTZZZZ.exe
+         cd UNITTESTZZZZ/release
+         ./UNITTESTZZZZ.exe > test_output.log 2>&1
+
 
       - name: Capture Test Output
         if: failure()
